@@ -1,0 +1,43 @@
+---
+description: Rules for MCP (Model Context Protocol) tool servers
+globs: ["src/**/*.ts", "**/*.py"]
+alwaysApply: false
+---
+# Rules: MCP (Model Context Protocol) tool server
+
+## PROJECT FACTS (edit these)
+- Language: TypeScript (Node 20+) | Python 3.11+
+- SDK: @modelcontextprotocol/sdk | mcp (python)
+- Transport: stdio (default) | streamable HTTP
+- Test: `npm test` | `pytest -q`
+- Lint: `npm run lint` | `ruff check .`
+- Entry point: src/index.ts | server.py
+
+## Must pass before done
+- Run the test and lint commands above. Both must pass.
+- Run `npx @modelcontextprotocol/inspector` (or the python equivalent) and confirm that tools/list returns every tool.
+
+## Tool design
+- Each tool has one job. Name tools verb_noun in snake_case (e.g. search_issues).
+- Every tool has a description of 1-2 sentences that says WHEN to use it, not just what it does.
+- Every input property has a type and a description. Mark required fields in `required`.
+- Use enums instead of free-text strings when the value set is known.
+- Return structured, compact results. Truncate long outputs and say that they were truncated.
+- Errors are returned as tool results with isError: true and a message the model can act on. Do not throw raw stack traces.
+
+## stdio safety
+- NEVER write to stdout except protocol messages. Send logs to stderr.
+- No interactive prompts. The server runs headless.
+
+## Security
+- Read secrets from environment variables only. Never log them. Never return them in tool output.
+- Validate and bound every input (path traversal, max lengths, allowed hosts).
+- Destructive tools (delete, write, send) must say so in the description and need an explicit confirm-style argument.
+
+## Boundaries
+- Do not edit generated files or the lockfile by hand.
+- Do not add a dependency for something under 30 lines of code.
+
+## Definition of done
+- New or changed tool has a test that calls it through the server, not just the handler.
+- README tool table updated when a tool is added, renamed or removed.
