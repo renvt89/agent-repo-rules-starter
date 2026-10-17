@@ -22,3 +22,7 @@ https://renevibe76.gumroad.com/l/toahua
 Disclosure: that link goes to the author's own product. The free files in this repo work without it.
 
 License: MIT. Built by Rene Vergara.
+
+## Listed on cursor.directory
+
+This starter is listed at https://cursor.directory/plugins/agent-repo-rules-starter
