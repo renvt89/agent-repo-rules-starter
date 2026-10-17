@@ -1,0 +1,44 @@
+---
+description: Rules for LLM API clients with budgets, retries and caching
+globs: ["src/**/*.ts", "**/*.py"]
+alwaysApply: false
+---
+# Rules: cost-guarded LLM API client
+
+## PROJECT FACTS (edit these)
+- Language: TypeScript (Node 20+) | Python 3.11+
+- Providers: OpenAI | Anthropic | other (list them)
+- Budget config: config/budget.(json|yaml): daily_usd, per_request_max_tokens
+- Usage log: logs/usage.jsonl (one line per call)
+- Test: `npm test` | `pytest -q`
+- Lint: `npm run lint` | `ruff check .`
+
+## Must pass before done
+- Tests and lint pass. The budget tests must pass. No real API calls in tests; use mocked responses.
+
+## Budget and cost
+- Every call goes through one client wrapper. No direct SDK calls anywhere else in the codebase.
+- Check the remaining budget BEFORE each call. If the call would exceed it, refuse with a clear error. Never silently degrade.
+- Always set max_tokens or max_output_tokens. No unbounded completions.
+- After every call, log model, input tokens, output tokens, cached tokens, estimated cost, latency and status to the usage log.
+- Keep model prices in one table file with a 'last checked' date. Do not hard-code prices across the code.
+
+## Retries and limits
+- Retry only on 429, 5xx and timeouts. Use exponential backoff with jitter, a max attempt count and a total time cap.
+- Respect Retry-After and rate-limit headers when present.
+- Never retry 4xx validation errors. Surface them instead.
+- Set a request timeout on every call.
+
+## Caching
+- Cache deterministic calls (temperature 0) keyed by a hash of model + messages + params.
+- Use provider prompt caching for long, stable prefixes when available. Keep stable content first in the prompt.
+
+## Security
+- API keys come from environment variables only. Never log keys, full prompts with user data, or raw auth headers.
+- Redact secrets from error messages before logging them.
+
+## Boundaries
+- Do not raise budget limits or swap to a more expensive model as part of an unrelated change.
+
+## Definition of done
+- New provider or model: price table entry, a test for budget refusal, and usage logging verified in tests.
