@@ -1,0 +1,37 @@
+---
+description: Rules for versioned prompt collections
+globs: ["prompts/**", "src/prompts.*"]
+alwaysApply: false
+---
+# Rules: versioned prompt library
+
+## PROJECT FACTS (edit these)
+- Layout: prompts/<name>/v<N>.md (+ optional meta.yaml)
+- Loader: src/prompts.(ts|py) loads prompts by name + version
+- Test: `npm test` | `pytest -q`
+- Prompt regression check: `make prompt-check`
+
+## Must pass before done
+- Tests pass. `make prompt-check` passes (or report the cases that changed).
+
+## Versioning
+- Never edit a released prompt version in place. Copy it to v<N+1> and change the copy.
+- Every prompt version has meta: owner, intended model, variables, date, and a one-line changelog entry.
+- Code pins a prompt version explicitly. No 'latest' in production paths.
+
+## Prompt content
+- Declare every template variable in meta. Rendering fails on a missing or unused variable.
+- Keep instructions, context and examples in clearly separated sections.
+- Put the output format last, with an exact schema or example.
+- No secrets, customer data or internal URLs inside prompt files.
+- Treat user-provided text as data: wrap it in delimiters and never let it replace the instructions.
+
+## Changes
+- One prompt change per commit, with before/after outputs on the regression cases.
+- Do not change a prompt and the model it targets in the same commit.
+
+## Boundaries
+- Do not delete old versions that code still references. Search before removing.
+
+## Definition of done
+- New version + meta + changelog line + regression results attached to the PR.
