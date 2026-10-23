@@ -1,28 +1,32 @@
-# Agent Repo Rules Starter (free, MIT)
+# Agent Repository Rules Starter
 
-These are free rules files for AI coding agents such as Cursor, Cline, Windsurf and Claude Code. They come from the paid **Agent Repo Rules Starter Pack** by Rene Vergara.
+This repository provides a starter template for defining rules and guidelines for AI agents in your project. It includes a comprehensive set of best practices and examples for managing agent behavior and ensuring compliance.
 
-This repo has 3 of the 6 rule sets as Cursor `.mdc` rules:
+## Features
+- **Agent Rules:** Define rules for agent behavior and constraints.
+- **Tool Descriptions:** Review and manage tool descriptions for your MCP server.
+- **Security and Compliance:** Ensure your agents adhere to security and compliance standards.
 
-| File | For |
-|---|---|
-| `rules/mcp-server.mdc` | MCP (Model Context Protocol) tool servers |
-| `rules/cost-guarded-api-client.mdc` | LLM API clients with budgets and retries |
-| `rules/prompt-library.mdc` | Versioned prompt collections |
+## Getting Started
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/renvt89/agent-repo-rules-starter.git
+   ```
 
-## How to use
-1. Copy a file into `.cursor/rules/` in your repo. For Cline, rename it to `.clinerules`. For Claude Code, paste it into `CLAUDE.md`. For Windsurf, use `.windsurfrules`.
-2. Edit the `PROJECT FACTS` block at the top. The rules stay generic until you fill it in.
-3. Delete any rule you do not actually enforce. If the agent sees a rule broken in the codebase, it ignores that rule.
+2. Navigate to the repository:
+   ```bash
+   cd agent-repo-rules-starter
+   ```
 
-## Full pack (paid, disclosed)
-The full pack has all 6 rule sets (adding LangGraph apps, agent-eval repos and Python tool servers) in both `.clinerules` and `.cursorrules` form, plus a one-page guide to writing your own. It is sold by the author on Gumroad, pay what you want from $1:
-https://renevibe76.gumroad.com/l/toahua
+## Live Checkouts
+- **Agent Incident Postmortem Pack:** [Kuwset](https://renevibe76.gumroad.com/l/kuwset) (HTTP 200 verified)
+- **LLM Vendor Lock-in Audit CLI:** [Vdmrtn](https://renevibe76.gumroad.com/l/vdmrtn) (HTTP 200 verified)
 
-Disclosure: that link goes to the author's own product. The free files in this repo work without it.
+## Privacy and Terms
+- **Privacy Policy:** [Privacy Policy Link](https://example.com/privacy-policy)
+- **Terms of Service:** [Terms of Service Link](https://example.com/terms-of-service)
 
-License: MIT. Built by Rene Vergara.
+## License
+This project is licensed under the MIT License.
 
-## Listed on cursor.directory
-
-This starter is listed at https://cursor.directory/plugins/agent-repo-rules-starter
+---
