@@ -19,14 +19,16 @@ This repository provides a starter template for defining rules and guidelines fo
    ```
 
 ## Live Checkouts
+- **Agent Repository Rules Starter Pack** — the paid pack version of this repo (pay what you want, from $1): [toahua](https://renevibe76.gumroad.com/l/toahua)
 - **Agent Incident Postmortem Pack:** [Kuwset](https://renevibe76.gumroad.com/l/kuwset) (HTTP 200 verified)
 - **LLM Vendor Lock-in Audit CLI:** [Vdmrtn](https://renevibe76.gumroad.com/l/vdmrtn) (HTTP 200 verified)
 
 ## Privacy and Terms
-- **Privacy Policy:** [Privacy Policy Link](https://example.com/privacy-policy)
-- **Terms of Service:** [Terms of Service Link](https://example.com/terms-of-service)
+Checkout is handled by Gumroad, so Gumroad's policies apply to the purchase:
+- **Privacy Policy:** [https://gumroad.com/privacy](https://gumroad.com/privacy)
+- **Terms of Service:** [https://gumroad.com/terms](https://gumroad.com/terms)
+
+This repository holds only Markdown / Cursor rule files: no runtime, no telemetry, and no network code, so it collects no data of its own.
 
 ## License
 This project is licensed under the MIT License.
-
----
